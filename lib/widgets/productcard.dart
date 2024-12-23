@@ -9,6 +9,7 @@ class ProductCard extends StatelessWidget {
   final String productQuantity;
 
   const ProductCard({
+    super.key,
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
@@ -18,7 +19,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: 0.7,
+      scale: 0.95,
       child: Card(
         elevation: 2.0,
         shape: RoundedRectangleBorder(
@@ -33,8 +34,7 @@ class ProductCard extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
               child: Image.asset(imageUrl, fit: BoxFit.cover),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
                 Text(
                   productPrice,
@@ -44,11 +44,6 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5.0),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
                 Text(
                   productName,
                   style: TextStyle(
@@ -56,54 +51,54 @@ class ProductCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 5.0),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
                 Text(
                   productQuantity,
                   style: TextStyle(
                     fontSize: 14.0,
                     color: Colors.grey,
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 5.0),
+                          child: ElevatedButton(
+                            
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0.5,
+                              padding: EdgeInsets.zero,
+                            ),
+                            onPressed: () {},
+                            child: Icon(Icons.shopping_bag_outlined),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 8.0, top: 5.0),
+                      child: Column(
+                        children: [
+                          AddToCartCounterButton(
+                            initNumber: 0,
+                            minNumber: 0,
+                            maxNumber: 10,
+                            increaseCallback: () {},
+                            decreaseCallback: () {},
+                            counterCallback: (int count) {},
+                            backgroundColor: Colors.green.shade300,
+                            buttonFillColor: Colors.green.shade300,
+                            buttonIconColor: Colors.white,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Icon(Icons.shopping_bag_outlined),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      AddToCartCounterButton(
-                        initNumber: 0,
-                        minNumber: 0,
-                        maxNumber: 10,
-                        increaseCallback: () {},
-                        decreaseCallback: () {},
-                        counterCallback: (int count) {},
-                        backgroundColor: Colors.green.shade300,
-                        buttonFillColor: Colors.green.shade300,
-                        buttonIconColor: Colors.white,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )
           ],
         ),
       ),

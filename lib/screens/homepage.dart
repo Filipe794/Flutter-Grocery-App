@@ -30,21 +30,23 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
 
-                ClickableRow(text: "Categories", onTap: () {}),
+                ClickableRow(
+                    text: "Categories",
+                    onTap: () {
+                      // direcionar para outra página
+                    }),
                 SizedBox(height: 10),
 
-                // Ícones do carousel
                 SizedBox(
-                  height: 100, // Altura fixa para o Iconcarousel
+                  height: 75, // Altura fixa para o Iconcarousel
                   child: Iconcarousel(),
                 ),
-                // Ajuste de layout para evitar overflow
                 Row(
                   children: [
                     Expanded(
                       child: Column(
                         mainAxisSize: MainAxisSize
-                            .min, // Ajusta o espaço entre os cartões
+                            .max, // Ajusta o espaço entre os cartões
                         children: [
                           ProductCard(
                             imageUrl: 'lib/assets/peach.png',
@@ -52,8 +54,6 @@ class HomePage extends StatelessWidget {
                             productPrice: '\$8.00',
                             productQuantity: 'dozen',
                           ),
-                          SizedBox(
-                              height: 4), // Menor espaçamento entre os cartões
                           ProductCard(
                             imageUrl: 'lib/assets/apple.png',
                             productName: 'Fresh Apple',
@@ -63,11 +63,10 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: 10), // Espaço entre as colunas
                     Expanded(
                       child: Column(
                         mainAxisSize: MainAxisSize
-                            .min, // Ajusta o espaço entre os cartões
+                            .max, // Ajusta o espaço entre os cartões
                         children: [
                           ProductCard(
                             imageUrl: 'lib/assets/peach.png',
@@ -75,8 +74,8 @@ class HomePage extends StatelessWidget {
                             productPrice: '\$8.00',
                             productQuantity: 'dozen',
                           ),
-                          SizedBox(
-                              height: 4), // Menor espaçamento entre os cartões
+                          // SizedBox(
+                          //     height: 4), // Menor espaçamento entre os cartões
                           ProductCard(
                             imageUrl: 'lib/assets/apple.png',
                             productName: 'Fresh Apple',
@@ -94,35 +93,39 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      // Footer com os ícones de navegação
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: '',
-          ),
-        ],
-        onTap: (int index) {
-          switch (index) {
-            case 0:
-              break;
-            case 1:
-              break;
-            case 2:
-              break;
-            default:
-          }
-        },
+      // BottomAppBar
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(), // Define o espaço para o FAB
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              iconSize: 24.0,
+              icon: Icon(Icons.home),
+              onPressed: () {
+                // ação para o botão Home
+              },
+            ),
+            IconButton(
+              iconSize: 24.0,
+              icon: Icon(Icons.account_circle),
+              onPressed: () {
+                // ação para o botão Account
+              },
+            ),
+            IconButton(
+              iconSize: 24.0,
+              icon: Icon(Icons.favorite),
+              onPressed: () {
+                // ação para o botão Favorite
+              },
+            ),
+          ],
+        ),
       ),
-      
+
+      // FloatingActionButton
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.green,

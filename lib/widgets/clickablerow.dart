@@ -4,19 +4,16 @@ class ClickableRow extends StatelessWidget {
   final String text;
   final VoidCallback onTap; // Função a ser chamada ao clicar
 
-  const ClickableRow({required this.text, required this.onTap});
+  const ClickableRow({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // Chama a função ao clicar
+      onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Espaçamento interno
-        decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey.shade300)), // Linha inferior
-        ),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Espaço entre os itens
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               text,

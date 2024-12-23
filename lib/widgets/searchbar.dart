@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
+  const Search({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,9 +12,12 @@ class Search extends StatelessWidget {
           labelText: 'Buscar...',
           hintText: 'Digite o nome do produto',
           prefixIcon: Icon(Icons.search),
-          border: InputBorder.none,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0), // Arredondando as bordas
+            borderSide: BorderSide.none, // Remove a borda padrão
+          ),
           filled: true,
-          fillColor: Colors.grey.withOpacity(0.1)
+          fillColor: const Color.fromARGB(255, 201, 197, 197).withOpacity(0.1)
         ),
       ),
     );
