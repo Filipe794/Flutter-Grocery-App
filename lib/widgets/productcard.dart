@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
+import 'package:groceryapp/widgets/favouritebutton.dart';
 import 'package:add_to_cart_button/add_to_cart_button.dart';
 
 class ProductCard extends StatelessWidget {
@@ -27,9 +27,9 @@ class ProductCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [LikeButton()]),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              FavoriteButton(onTap: () {}),
+            ]),
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
               child: Image.asset(imageUrl, fit: BoxFit.cover),
@@ -66,7 +66,6 @@ class ProductCard extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 5.0),
                           child: ElevatedButton(
-                            
                             style: ElevatedButton.styleFrom(
                               elevation: 0.5,
                               padding: EdgeInsets.zero,

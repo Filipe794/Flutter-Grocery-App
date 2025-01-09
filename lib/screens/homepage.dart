@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:groceryapp/widgets/productcard.dart';
 import 'package:groceryapp/widgets/searchbar.dart';
 import 'package:groceryapp/widgets/imagecarousel.dart';
 import 'package:groceryapp/widgets/clickablerow.dart';
@@ -125,9 +124,11 @@ class HomePage extends StatelessWidget {
       ),
 
       // FloatingActionButton
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          
+        },
         backgroundColor: Colors.green,
         child: Icon(Icons.shopping_bag_outlined),
       ),
