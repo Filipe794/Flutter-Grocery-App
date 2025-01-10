@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class QuantityAndCartWidget extends StatefulWidget {
-  const QuantityAndCartWidget({super.key});
+  const QuantityAndCartWidget({Key? key}) : super(key: key);
 
   @override
   State<QuantityAndCartWidget> createState() => _QuantityAndCartWidgetState();
@@ -46,51 +46,52 @@ class _QuantityAndCartWidgetState extends State<QuantityAndCartWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Quantity Buttons
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: decrementQuantity,
-              icon: const Icon(Icons.remove),
-              color: Colors.black,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                '$quantity',
-                style: const TextStyle(fontSize: 18.0),
+    return  Transform.scale(
+      scale: 0.90,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: decrementQuantity,
+                  icon: const Icon(Icons.remove),
+                  color: Colors.black,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    '$quantity',
+                    style: const TextStyle(fontSize: 18.0),
+                  ),
+                ),
+                IconButton(
+                  onPressed: incrementQuantity,
+                  icon: const Icon(Icons.add),
+                  color: Colors.black,
+                ),
+                const SizedBox(width: 16),
+            // Add to Cart Button
+            ElevatedButton.icon(
+              onPressed: () {
+                // Add to cart logic here
+              },
+              icon: const Icon(Icons.shopping_bag),
+              label: const Text('Add to cart'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                textStyle: const TextStyle(fontSize: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
+            )
+              ],
             ),
-            IconButton(
-              onPressed: incrementQuantity,
-              icon: const Icon(Icons.add),
-              color: Colors.black,
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        // Add to Cart Button
-        ElevatedButton.icon(
-          onPressed: () {
-            // Add to cart logic here
-          },
-          icon: const Icon(Icons.shopping_bag),
-          label: const Text('Add to cart'),
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-            backgroundColor: Colors.green,
-            foregroundColor: Colors.white,
-            textStyle: const TextStyle(fontSize: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
+        
   }
 }
