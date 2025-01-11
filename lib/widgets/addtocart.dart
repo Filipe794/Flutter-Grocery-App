@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:groceryapp/widgets/custombutton.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -46,11 +46,13 @@ class _QuantityAndCartWidgetState extends State<QuantityAndCartWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return  Transform.scale(
+    return Transform.scale(
       scale: 0.90,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Row(
+        child: Column(
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
@@ -69,29 +71,13 @@ class _QuantityAndCartWidgetState extends State<QuantityAndCartWidget> {
                   onPressed: incrementQuantity,
                   icon: const Icon(Icons.add),
                   color: Colors.black,
-                ),
-                const SizedBox(width: 16),
-            // Add to Cart Button
-            ElevatedButton.icon(
-              onPressed: () {
-                // Add to cart logic here
-              },
-              icon: const Icon(Icons.shopping_bag),
-              label: const Text('Add to cart'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                textStyle: const TextStyle(fontSize: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            )
+                )
               ],
             ),
+            CustomButton(onPressed: (){}, buttonText: "Add to Cart"),
+          ],
+        ),
       ),
     );
-        
   }
 }

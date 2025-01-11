@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                 // Ícones de categorias
                 SizedBox(
                   height: 75,
-                  child: Iconcarousel(),
+                  child: IconCarousel(),
                 ),
 
                 SizedBox(height: 10),
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                             productQuantity: 'dozen',
                           ),
                           ProductCard(
-                            imageUrl: 'lib/assets/apple.png',
+                            imageUrl: 'lib/assets/peach.png',
                             productName: 'Fresh Apple',
                             productPrice: '\$5.00',
                             productQuantity: 'kg',
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                             productQuantity: 'dozen',
                           ),
                           ProductCard(
-                            imageUrl: 'lib/assets/apple.png',
+                            imageUrl: 'lib/assets/peach.png',
                             productName: 'Fresh Apple',
                             productPrice: '\$5.00',
                             productQuantity: 'kg',
