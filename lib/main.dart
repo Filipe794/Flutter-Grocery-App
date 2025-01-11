@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:groceryapp/screens/homepage.dart';
+import 'package:groceryapp/screens/homepage.dart';
 import 'package:groceryapp/screens/productpage.dart';
+import 'package:groceryapp/screens/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins'
       ),
-      home: Productpage(),
+      home: HomePage(),
     );
   }
 }

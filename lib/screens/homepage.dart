@@ -4,6 +4,7 @@ import 'package:groceryapp/widgets/imagecarousel.dart';
 import 'package:groceryapp/widgets/clickablerow.dart';
 import 'package:groceryapp/widgets/iconcarousel.dart';
 import 'package:groceryapp/widgets/productcard.dart';
+import 'package:groceryapp/widgets/bottombar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,34 +19,40 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // barra de busca
+                // Barra de busca
                 Search(),
                 SizedBox(height: 10),
 
-                // carrosel de imagens
+                // Carrossel de imagens
                 SizedBox(
                   height: 200,
                   child: Carousel(),
                 ),
                 SizedBox(height: 10),
 
+                // Linha clicável de categorias
                 ClickableRow(
-                    text: "Categories",
-                    onTap: () {
-                      // direcionar para outra página
-                    }),
+                  text: "Categories",
+                  onTap: () {
+                    // Direcionar para outra página
+                    print("Categories clicked");
+                  },
+                ),
                 SizedBox(height: 10),
 
+                // Ícones de categorias
                 SizedBox(
-                  height: 75, // Altura fixa para o Iconcarousel
+                  height: 75,
                   child: Iconcarousel(),
                 ),
+
+                SizedBox(height: 10),
+
+                // Produtos em duas colunas
                 Row(
                   children: [
                     Expanded(
                       child: Column(
-                        mainAxisSize: MainAxisSize
-                            .max, // Ajusta o espaço entre os cartões
                         children: [
                           ProductCard(
                             imageUrl: 'lib/assets/peach.png',
@@ -64,8 +71,6 @@ class HomePage extends StatelessWidget {
                     ),
                     Expanded(
                       child: Column(
-                        mainAxisSize: MainAxisSize
-                            .max, // Ajusta o espaço entre os cartões
                         children: [
                           ProductCard(
                             imageUrl: 'lib/assets/peach.png',
@@ -73,8 +78,6 @@ class HomePage extends StatelessWidget {
                             productPrice: '\$8.00',
                             productQuantity: 'dozen',
                           ),
-                          // SizedBox(
-                          //     height: 4), // Menor espaçamento entre os cartões
                           ProductCard(
                             imageUrl: 'lib/assets/apple.png',
                             productName: 'Fresh Apple',
@@ -91,47 +94,28 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-
-      // BottomAppBar
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(), // Define o espaço para o FAB
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              iconSize: 24.0,
-              icon: Icon(Icons.home),
-              onPressed: () {
-                // ação para o botão Home
-              },
-            ),
-            IconButton(
-              iconSize: 24.0,
-              icon: Icon(Icons.account_circle),
-              onPressed: () {
-                // ação para o botão Account
-              },
-            ),
-            IconButton(
-              iconSize: 24.0,
-              icon: Icon(Icons.favorite),
-              onPressed: () {
-                // ação para o botão Favorite
-              },
-            ),
-          ],
+      bottomNavigationBar: CustomBottomAppBar(
+        onHomePressed: () {
+          print("Home button pressed");
+        },
+        onAccountPressed: () {
+          print("Account button pressed");
+        },
+        onFavoritePressed: () {
+          print("Favorite button pressed");
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: () {
+          print("Floating Action Button pressed");
+        },
+        child: const Icon(
+          Icons.shopping_bag_outlined,
+          color: Colors.white,
         ),
       ),
-
-      // FloatingActionButton
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          
-        },
-        backgroundColor: Colors.green,
-        child: Icon(Icons.shopping_bag_outlined),
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 }
