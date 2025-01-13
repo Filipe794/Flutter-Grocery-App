@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp/screens/profile.dart';
 import 'package:groceryapp/widgets/searchbar.dart';
 import 'package:groceryapp/widgets/imagecarousel.dart';
 import 'package:groceryapp/widgets/clickablerow.dart';
@@ -128,7 +129,7 @@ class HomePage extends StatelessWidget {
         onHomePressed: () {
         },
         onAccountPressed: () {
-          print("Account button pressed");
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Profile() ));
         },
         onFavoritePressed: () {
           print("Favorite button pressed");
