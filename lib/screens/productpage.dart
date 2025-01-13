@@ -2,13 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/favouritebutton.dart';
 import 'package:groceryapp/widgets/addtocart.dart';
 
-class Productpage extends StatelessWidget {
-  Productpage({super.key});
+class ProductPage extends StatelessWidget {
+  ProductPage({super.key});
 
-  double price = 8.00;
+  Map<String, dynamic> productData = {
+    'image_path': 'lib/assets/peach.png',
+    'name': 'Fresh Peach',
+    'price': '\$8.00',
+    'quantity': 'dozen',
+    'rate': '4.0 (89 Reviews)',
+    'description': 'Descubra o sabor autêntico das peras orgânicas, cultivadas com cuidado e respeito à natureza. Reconhecidas por sua doçura e suculência, essas peras são ideais para lanches, sobremesas ou para trazer um toque especial às suas saladas. Uma escolha saudável e deliciosa para quem valoriza qualidade e sustentabilidade.',
+  };
+
+  // Função para gerar estrelas dinamicamente
+  List<Widget> buildStars(double rating) {
+    List<Widget> stars = [];
+    for (int i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.add(const Icon(Icons.star, color: Colors.yellow, size: 16.0));
+      } else {
+        stars.add(const Icon(Icons.star, color: Colors.grey, size: 16.0));
+      }
+    }
+    return stars;
+  }
 
   @override
   Widget build(BuildContext context) {
+    double rating = double.parse(productData['rate'].split(' ')[0]);
+
     return Scaffold(
       backgroundColor: Color(0xFFF4F5F9),
       body: SafeArea(
@@ -30,7 +52,7 @@ class Productpage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('lib/assets/peach.png'),
+                          Image.asset(productData['image_path']),
                         ],
                       ),
                       Row(
@@ -39,7 +61,7 @@ class Productpage extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '\$${price.toStringAsFixed(2)}',
+                                productData['price'],
                                 style: TextStyle(
                                   color: Colors.green[400],
                                   fontSize: 16,
@@ -59,7 +81,7 @@ class Productpage extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'Fresh Peach',
+                            productData['name'],
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -70,7 +92,7 @@ class Productpage extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'dozen',
+                            productData['quantity'],
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -79,32 +101,9 @@ class Productpage extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 16.0,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 16.0,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 16.0,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 16.0,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: Colors.grey,
-                            size: 16.0,
-                          ),
-                          Text(" 4.0 (89 Reviews)"),
+                          ...buildStars(rating),
+                          const SizedBox(width: 5),
+                          Text(productData['rate']),
                         ],
                       ),
                       Row(
@@ -114,7 +113,7 @@ class Productpage extends StatelessWidget {
                             child: SizedBox(
                               width: 370,
                               child: Text(
-                                "Descubra o sabor autêntico das peras orgânicas, cultivadas com cuidado e respeito à natureza. Reconhecidas por sua doçura e suculência, essas peras são ideais para lanches, sobremesas ou para trazer um toque especial às suas saladas. Uma escolha saudável e deliciosa para quem valoriza qualidade e sustentabilidade.",
+                                productData['description'],
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 14,
@@ -129,7 +128,6 @@ class Productpage extends StatelessWidget {
                 ),
               ),
             ),
-            // Exibindo o QuantityAndCartWidget na parte inferior
             QuantityAndCartWidget(),
           ],
         ),

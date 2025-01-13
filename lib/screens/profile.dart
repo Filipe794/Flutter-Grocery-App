@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/bottombar.dart';
+import 'package:groceryapp/screens/homepage.dart';
+import 'package:groceryapp/screens/shoppingcart.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -86,10 +88,15 @@ class Profile extends StatelessWidget {
       ),
       bottomNavigationBar: CustomBottomAppBar(
         onHomePressed: () {
-          print("Home button pressed");
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+                  (Route<dynamic> route) => false,
+            );
         },
         onAccountPressed: () {
-          print("Account button pressed");
         },
         onFavoritePressed: () {
           print("Favorite button pressed");
@@ -98,7 +105,7 @@ class Profile extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {
-          print("Floating Action Button pressed");
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCartPage() ));
         },
         child: const Icon(
           Icons.shopping_bag_outlined,

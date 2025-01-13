@@ -6,6 +6,7 @@ import 'package:groceryapp/widgets/iconcarousel.dart';
 import 'package:groceryapp/widgets/productcard.dart';
 import 'package:groceryapp/widgets/bottombar.dart';
 import 'package:groceryapp/screens/showcategoriespage.dart';
+import 'package:groceryapp/screens/shoppingcart.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -125,7 +126,6 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: CustomBottomAppBar(
         onHomePressed: () {
-          print("Home button pressed");
         },
         onAccountPressed: () {
           print("Account button pressed");
@@ -137,7 +137,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {
-          print("Floating Action Button pressed");
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCartPage() ));
         },
         child: const Icon(
           Icons.shopping_bag_outlined,

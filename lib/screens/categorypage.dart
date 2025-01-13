@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/productcard.dart';
+import 'package:groceryapp/widgets/categorycard.dart';
 
 class CategoryPage extends StatelessWidget {
   final List<Map<String, dynamic>> iconData = [
@@ -81,7 +81,7 @@ class CategoryPage extends StatelessWidget {
                   itemCount: iconData.length,
                   itemBuilder: (context, index) {
                     final item = iconData[index];
-                    return ProductCard(productQuantity: 'dozen', productPrice: '8.00',path: 'lib/assets/peach.png', color: item['color'], name: item['name']);
+                    return CategoryCard(path: item['path'], color: item['color'], name: item['name'], onTap: (){});
                   },
                 ),
               ],
