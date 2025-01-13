@@ -16,21 +16,33 @@ class CustomBottomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
-      notchMargin: 8.0,
+      notchMargin: 2.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: onHomePressed,
+          Column(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.home),
+                onPressed: onHomePressed,
+              ),
+            ],
           ),
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: onAccountPressed,
+          Column(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.account_circle),
+                onPressed: onAccountPressed,
+              ),
+            ],
           ),
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: onFavoritePressed,
+          Column(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.favorite),
+                onPressed: onFavoritePressed,
+              ),
+            ],
           ),
         ],
       ),

@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp/screens/categoriespage.dart';
+import 'package:groceryapp/screens/showcategoriespage.dart';
 import 'package:groceryapp/screens/homepage.dart';
-import 'package:groceryapp/screens/productpage.dart';
 import 'package:groceryapp/screens/profile.dart';
 import 'package:groceryapp/screens/shoppingcart.dart';
+import 'package:groceryapp/screens/categorypage.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins'
       ),
-      home: ShoppingCartPage(),
+      home: HomePage(),
     );
   }
 }

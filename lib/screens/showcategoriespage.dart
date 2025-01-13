@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/categorycard.dart';
 
-class CategoriesPage extends StatelessWidget {
+class ShowCategoriesPage extends StatelessWidget {
   final List<Map<String, dynamic>> iconData = [
     {
       'path': 'lib/assets/icons-carousel/apple.png',
@@ -40,7 +40,7 @@ class CategoriesPage extends StatelessWidget {
     },
   ];
 
-  CategoriesPage({super.key});
+  ShowCategoriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {

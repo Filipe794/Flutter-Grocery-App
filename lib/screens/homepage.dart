@@ -5,9 +5,62 @@ import 'package:groceryapp/widgets/clickablerow.dart';
 import 'package:groceryapp/widgets/iconcarousel.dart';
 import 'package:groceryapp/widgets/productcard.dart';
 import 'package:groceryapp/widgets/bottombar.dart';
+import 'package:groceryapp/screens/showcategoriespage.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final List<Map<String, dynamic>> iconData = [
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFFFE9E5),
+      'name': 'Pineaple',
+      'price': '\$8.00',
+      'quantity': 'dozen',
+    },
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFD2EFFF),
+      'name': 'Apple',
+      'price': '\$8.00',
+      'quantity': 'dozen'
+    },
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFD4C9EF),
+      'name': 'Peach',
+      'price': '\$8.00',
+      'quantity': 'dozen'
+    },
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFDCF4F5),
+      'name': 'Avocado',
+      'price': '\$8.00',
+      'quantity': 'dozen'
+    },
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFE6F2EA),
+      'name': 'Dragon Fruit',
+      'price': '\$8.00',
+      'quantity': 'dozen'
+    },
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFFFF6E3),
+      'name': 'Pomegranate',
+      'price': '\$8.00',
+      'quantity': 'dozen'
+    },
+    {
+      'path': 'lib/assets/peach.png',
+      'color': Color(0xFFFFE8F2),
+      'name': 'Orange',
+      'price': '\$8.00',
+      'quantity': 'dozen'
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +87,10 @@ class HomePage extends StatelessWidget {
                 ClickableRow(
                   text: "Categories",
                   onTap: () {
-                    // Direcionar para outra página
-                    print("Categories clicked");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ShowCategoriesPage()),
+                    );
                   },
                 ),
                 SizedBox(height: 10),
@@ -49,45 +104,19 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 10),
 
                 // Produtos em duas colunas
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          ProductCard(
-                            imageUrl: 'lib/assets/peach.png',
-                            productName: 'Fresh Peach',
-                            productPrice: '\$8.00',
-                            productQuantity: 'dozen',
-                          ),
-                          ProductCard(
-                            imageUrl: 'lib/assets/peach.png',
-                            productName: 'Fresh Apple',
-                            productPrice: '\$5.00',
-                            productQuantity: 'kg',
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          ProductCard(
-                            imageUrl: 'lib/assets/peach.png',
-                            productName: 'Fresh Peach',
-                            productPrice: '\$8.00',
-                            productQuantity: 'dozen',
-                          ),
-                          ProductCard(
-                            imageUrl: 'lib/assets/peach.png',
-                            productName: 'Fresh Apple',
-                            productPrice: '\$5.00',
-                            productQuantity: 'kg',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 7,
+                    mainAxisSpacing: 7,
+                  ),
+                  itemCount: iconData.length,
+                  itemBuilder: (context, index) {
+                    final item = iconData[index];
+                    return ProductCard(productQuantity: item['quantity'], productPrice: item['price'],path: item['path'], color: item['color'], name: item['name']);
+                  },
                 ),
               ],
             ),

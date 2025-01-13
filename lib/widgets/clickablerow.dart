@@ -11,7 +11,9 @@ class ClickableRow extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        color: Colors.transparent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
