@@ -51,7 +51,9 @@ class Profile extends StatelessWidget {
                       _buildMenuItem(
                         icon: Icons.account_circle_outlined,
                         text: "About Me",
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => AboutMeScreen() ));
+                        },
                       ),
                       _buildMenuItem(
                         icon: Icons.inventory,
@@ -66,7 +68,9 @@ class Profile extends StatelessWidget {
                       _buildMenuItem(
                         icon: Icons.room,
                         text: "My Address",
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MyAddressScreen() ));
+                        },
                       ),
                       _buildMenuItem(
                         icon: Icons.credit_card,

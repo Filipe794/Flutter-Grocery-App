@@ -7,3 +7,6 @@ export 'package:groceryapp/screens/productpage.dart';
 export 'package:groceryapp/screens/profile.dart';
 export 'package:groceryapp/screens/shoppingcart.dart';
 export 'package:groceryapp/screens/showcategoriespage.dart';
+export 'package:groceryapp/screens/aboutme.dart';
+export 'package:groceryapp/screens/newcard.dart';
+export 'package:groceryapp/screens/mycards.dart';
