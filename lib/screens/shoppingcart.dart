@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/cartempty.dart';
-import 'package:groceryapp/widgets/cartwithitems.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   @override
@@ -65,7 +64,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       appBar: AppBar(
         leading: BackButton(),
         title: const Text('Shopping Cart', style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.lightGreen[100],
+        centerTitle: true,
         elevation: 0,
       ),
       body: cartItems.isEmpty
