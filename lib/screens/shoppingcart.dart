@@ -69,7 +69,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         elevation: 0,
       ),
       body: cartItems.isEmpty
-          ? EmptyCart() // Exibe EmptyCart se o carrinho estiver vazio
+          ? EmptyCart()
           : CartWithItems(subtotal, shippingCharges, total, cartItems, _removeItem, _updateQuantity),
     );
   }
