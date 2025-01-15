@@ -30,6 +30,7 @@ class MyAddressScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.lightGreen[100],
         title: Text('My Address'),
         leading: BackButton(),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.add),

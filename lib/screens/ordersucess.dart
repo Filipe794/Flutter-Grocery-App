@@ -10,14 +10,14 @@ class OrderSuccessScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.lightGreen[100],
         elevation: 0,
         centerTitle: true,
         title: const Text(
           'Order Success',
           style: TextStyle(
             color: Colors.black,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
           ),
         ),
       ),

@@ -45,6 +45,11 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.lightGreen[100],
+        title: Text('Nome da Categoria'),
+        leading: BackButton(),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -52,24 +57,6 @@ class CategoryPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BackButton(),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 5.0, right: 40.0),
-                      child: Text(
-                        "Nome da Categoria",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 48), // Placeholder para alinhamento
-                  ],
-                ),
-                const SizedBox(height: 20),
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

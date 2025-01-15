@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:add_to_cart_button/add_to_cart_button.dart';
 
@@ -20,7 +21,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return GestureDetector(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductPage()));},
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,

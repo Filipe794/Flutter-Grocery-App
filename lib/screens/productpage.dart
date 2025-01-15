@@ -32,6 +32,11 @@ class ProductPage extends StatelessWidget {
     double rating = double.parse(productData['rate'].split(' ')[0]);
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.lightGreen[100],
+        title: Text(productData['name']),
+        leading: BackButton(),
+        centerTitle: true,
+      ),
       backgroundColor: Color(0xFFF4F5F9),
       body: SafeArea(
         child: Column(
@@ -43,12 +48,6 @@ class ProductPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          BackButton(),
-                        ],
-                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
