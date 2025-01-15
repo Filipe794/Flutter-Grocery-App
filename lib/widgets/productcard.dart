@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/favouritebutton.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:add_to_cart_button/add_to_cart_button.dart';
 
 class ProductCard extends StatelessWidget {

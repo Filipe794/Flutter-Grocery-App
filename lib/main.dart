@@ -1,12 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp/screens/productpage.dart';
-import 'package:groceryapp/screens/showcategoriespage.dart';
-import 'package:groceryapp/screens/homepage.dart';
-import 'package:groceryapp/screens/profile.dart';
-import 'package:groceryapp/screens/shoppingcart.dart';
-import 'package:groceryapp/screens/categorypage.dart';
-import 'package:groceryapp/screens/ordersucess.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins'
       ),
-      home: HomePage(),
+      home: MyAddressScreen(),
     );
   }
 }

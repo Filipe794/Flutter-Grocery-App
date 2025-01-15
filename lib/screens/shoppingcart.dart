@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/cartitem.dart'; // Certifique-se de que o caminho está correto
-import 'package:groceryapp/widgets/pricerow.dart';
-import 'package:groceryapp/widgets/custombutton.dart';
-import 'package:groceryapp/screens/ordersucess.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   @override

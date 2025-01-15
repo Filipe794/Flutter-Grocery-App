@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/bottombar.dart';
-import 'package:groceryapp/screens/homepage.dart';
-import 'package:groceryapp/screens/shoppingcart.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -12,6 +11,7 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Profile"),
         centerTitle: true,
+        backgroundColor: Colors.lightGreen[100],
       ),
       body: SafeArea(
         child: Padding(

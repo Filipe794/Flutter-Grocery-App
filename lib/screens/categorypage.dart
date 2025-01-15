@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/categorycard.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class CategoryPage extends StatelessWidget {
   final List<Map<String, dynamic>> iconData = [

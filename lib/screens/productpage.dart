@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/widgets/favouritebutton.dart';
-import 'package:groceryapp/widgets/addtocart.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage({super.key});

@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/screens/profile.dart';
-import 'package:groceryapp/widgets/searchbar.dart';
-import 'package:groceryapp/widgets/imagecarousel.dart';
-import 'package:groceryapp/widgets/clickablerow.dart';
-import 'package:groceryapp/widgets/iconcarousel.dart';
-import 'package:groceryapp/widgets/productcard.dart';
-import 'package:groceryapp/widgets/bottombar.dart';
-import 'package:groceryapp/screens/showcategoriespage.dart';
-import 'package:groceryapp/screens/shoppingcart.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -132,7 +125,6 @@ class HomePage extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context) => Profile() ));
         },
         onFavoritePressed: () {
-          print("Favorite button pressed");
         },
       ),
       floatingActionButton: FloatingActionButton(
