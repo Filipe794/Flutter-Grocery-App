@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins'
       ),
-      home: ShoppingCartPage(),
+      home: MyAddressScreen(),
     );
   }
 }

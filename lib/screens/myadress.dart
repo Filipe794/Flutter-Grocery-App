@@ -27,7 +27,8 @@ class MyAddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.lightGreen[100],
+      appBar: AppBar(
+        backgroundColor: Colors.lightGreen[100],
         title: Text('My Address'),
         leading: BackButton(),
         centerTitle: true,
@@ -35,7 +36,8 @@ class MyAddressScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> AddAddressScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddAddressScreen()));
             },
           ),
         ],
@@ -59,7 +61,8 @@ class MyAddressScreen extends StatelessWidget {
         elevation: 0,
         child: CustomButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> Profile()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Profile()));
           },
           buttonText: 'Save settings',
         ),
@@ -180,33 +183,41 @@ class _ExpandableAddressCardState extends State<ExpandableAddressCard> {
                       ),
                       Align(
                           alignment: Alignment.centerLeft,
-                          child: Switch(
-                              activeColor: Colors.green,
-                              inactiveThumbColor: Colors.grey,
-                              inactiveTrackColor: Colors.white,
-                              value: isDefault,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  isDefault = value;
-                                });
-                                if (value) {
-                                  // Ação para definir como padrão
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Set as Default Enabled'),
-                                      duration: Duration(seconds: 2),
-                                    ),
-                                  );
-                                } else {
-                                  // Ação ao desativar o padrão
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Set as Default Disabled'),
-                                      duration: Duration(seconds: 2),
-                                    ),
-                                  );
-                                }
-                              }))
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Text("Make default"),
+                              ),
+                              Switch(
+                                  activeColor: Colors.green,
+                                  inactiveThumbColor: Colors.grey,
+                                  inactiveTrackColor: Colors.white,
+                                  value: isDefault,
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      isDefault = value;
+                                    });
+                                    if (value) {
+                                      // Ação para definir como padrão
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Set as Default Enabled'),
+                                          duration: Duration(seconds: 2),
+                                        ),
+                                      );
+                                    } else {
+                                      // Ação ao desativar o padrão
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Set as Default Disabled'),
+                                          duration: Duration(seconds: 2),
+                                        ),
+                                      );
+                                    }
+                                  }),
+                            ],
+                          ))
                     ],
                   ),
                 ],
