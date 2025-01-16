@@ -38,6 +38,8 @@ dependencies:
   add_to_cart_button: ^0.0.6
   line_icons: ^2.0.0
   fluttericon: ^2.0.0
+  firebase_core: ^2.13.1
+  firebase_auth: ^4.16.0
 
 dev_dependencies:
   flutter_test:

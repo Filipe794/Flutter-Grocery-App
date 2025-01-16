@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
-import 'package:groceryapp/screens/mycards.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
   runApp(const MyApp());
 }
 
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins'
       ),
-      home: MyCardsScreen(),
+      home: HomePage(),
     );
   }
 }
