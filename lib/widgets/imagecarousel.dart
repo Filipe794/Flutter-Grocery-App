@@ -34,9 +34,8 @@ class _CarouselState extends State<Carousel> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // PageView como fundo
         SizedBox(
-          height: 200, // Altura fixa do carrossel
+          height: 200,
           child: PageView(
             controller: _pageController,
             children: [
@@ -56,9 +55,8 @@ class _CarouselState extends State<Carousel> {
           ),
         ),
 
-        // Indicadores sobrepostos ao carrossel
         Positioned(
-          bottom: 8, // Posiciona os indicadores na parte inferior do carrossel
+          bottom: 8,
           left: 5,
           right: 0,
           child: Row(

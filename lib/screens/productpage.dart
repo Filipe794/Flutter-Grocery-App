@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class ProductPage extends StatelessWidget {
@@ -14,7 +13,6 @@ class ProductPage extends StatelessWidget {
     'description': 'Descubra o sabor autêntico das peras orgânicas, cultivadas com cuidado e respeito à natureza. Reconhecidas por sua doçura e suculência, essas peras são ideais para lanches, sobremesas ou para trazer um toque especial às suas saladas. Uma escolha saudável e deliciosa para quem valoriza qualidade e sustentabilidade.',
   };
 
-  // Função para gerar estrelas dinamicamente
   List<Widget> buildStars(double rating) {
     List<Widget> stars = [];
     for (int i = 1; i <= 5; i++) {
@@ -68,13 +66,6 @@ class ProductPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Column(
-                            children: [
-                              FavoriteButton(
-                                onTap: () {},
-                              ),
-                            ],
-                          )
                         ],
                       ),
                       Row(

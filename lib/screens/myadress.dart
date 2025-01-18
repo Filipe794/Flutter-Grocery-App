@@ -199,7 +199,6 @@ class _ExpandableAddressCardState extends State<ExpandableAddressCard> {
                                       isDefault = value;
                                     });
                                     if (value) {
-                                      // Ação para definir como padrão
                                       ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                           content: Text('Set as Default Enabled'),
@@ -207,7 +206,6 @@ class _ExpandableAddressCardState extends State<ExpandableAddressCard> {
                                         ),
                                       );
                                     } else {
-                                      // Ação ao desativar o padrão
                                       ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                           content: Text('Set as Default Disabled'),

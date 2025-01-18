@@ -37,7 +37,10 @@ class ProductCard extends StatelessWidget {
         child: Column(
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              Transform.scale(scale: 0.8, child:FavoriteButton(onTap: () {})),
+              Padding(
+                padding: const EdgeInsets.only(top: 3.0, right: 3.0),
+                child: FavoriteButton(size:19,onTap: () {}),
+              ),
             ]),
             Container(
               width: 50,

@@ -8,8 +8,8 @@ class CartWithItems extends StatelessWidget {
   final double shippingCharges;
   final double total;
   final List<Map<String, dynamic>> cartItems;
-  final Function(int) onRemove; // Função para remover um item
-  final Function(int, int) onUpdateQuantity; // Função para atualizar a quantidade
+  final Function(int) onRemove;
+  final Function(int, int) onUpdateQuantity;
 
   CartWithItems(
       this.subtotal, this.shippingCharges, this.total, this.cartItems, this.onRemove, this.onUpdateQuantity);
@@ -24,15 +24,11 @@ class CartWithItems extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = cartItems[index];
               return Dismissible(
-                key: Key(item['name']), // A chave deve ser única para cada item
+                key: Key(item['name']),
                 onDismissed: (direction) {
-                  // Chama a função de remoção de item ao ser descartado
                   onRemove(index);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("${item['name']} removed from cart")),
-                  );
                 },
-                background: Container(color: Colors.red), // Cor do fundo quando o item é deslizado
+                background: Container(color: Colors.red),
                 child: CartItem(
                   item: item,
                   onRemove: () => onRemove(index),

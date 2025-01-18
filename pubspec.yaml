@@ -40,6 +40,7 @@ dependencies:
   fluttericon: ^2.0.0
   firebase_core: ^2.13.1
   firebase_auth: ^4.16.0
+  cloud_firestore: ^4.17.5
 
 dev_dependencies:
   flutter_test:

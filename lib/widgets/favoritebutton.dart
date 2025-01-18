@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class FavoriteButton extends StatefulWidget {
-  final double size; // Controla o tamanho do botão
-  final VoidCallback onTap; // Função a ser executada ao pressionar
+  final double size;
+  final VoidCallback onTap;
+  final bool isFavorited;
 
   const FavoriteButton({
     super.key,
-    this.size = 24.0, // Tamanho padrão
+    this.size = 24.0,
     required this.onTap,
+    this.isFavorited = false,
   });
 
   @override
@@ -18,13 +20,14 @@ class _FavoriteButtonState extends State<FavoriteButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  bool isFavorited = false;
+  late bool isFavorited;
 
   @override
   void initState() {
     super.initState();
 
-    // Configurando o controlador de animação
+    isFavorited = widget.isFavorited;
+
     _controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 300),
@@ -51,7 +54,7 @@ class _FavoriteButtonState extends State<FavoriteButton>
       }
     });
 
-    widget.onTap(); // Chama a função passada ao botão
+    widget.onTap();
   }
 
   @override

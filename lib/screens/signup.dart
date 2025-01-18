@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:groceryapp/services/authservice.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -13,6 +15,9 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+
+  AuthService _authService = AuthService();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,10 +103,52 @@ class _SignupPageState extends State<SignupPage> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: CustomButton(
-          onPressed: () {
-            // Ação ao clicar no botão de cadastro
+          onPressed: () async {
+            if (_nomeController.text.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Por favor, insira seu nome.')),
+              );
+              return;
+            }
+            if (_emailController.text.isEmpty || !_emailController.text.contains('@')) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Por favor, insira um e-mail válido.')),
+              );
+              return;
+            }
+            if (_senhaController.text.isEmpty || _senhaController.text.length < 6) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('A senha precisa ter pelo menos 6 caracteres.')),
+              );
+              return;
+            }
+
+            setState(() {
+              _isLoading = true;
+            });
+
+            String? erro = await _authService.authUser(
+              email: _emailController.text,
+              password: _senhaController.text,
+              name: _nomeController.text,
+            );
+
+            setState(() {
+              _isLoading = false;
+            });
+
+            if (erro != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(erro)),
+              );
+            } else {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            }
           },
-          buttonText: "Cadastrar",
+          buttonText: _isLoading ? 'Cadastrando...' : "Cadastrar",
         ),
       ),
     );

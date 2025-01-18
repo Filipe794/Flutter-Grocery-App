@@ -38,18 +38,16 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
     },
   ];
 
-  // Função para remover um item do carrinho
   void _removeItem(int index) {
     setState(() {
-      cartItems.removeAt(index); // Remove o item da lista
+      cartItems.removeAt(index);
     });
   }
 
-  // Função para alterar a quantidade de um item no carrinho
   void _updateQuantity(int index, int quantityChange) {
     setState(() {
       if (cartItems[index]['quantity'] + quantityChange >= 0) {
-        cartItems[index]['quantity'] += quantityChange; // Atualiza a quantidade
+        cartItems[index]['quantity'] += quantityChange;
       }
     });
   }

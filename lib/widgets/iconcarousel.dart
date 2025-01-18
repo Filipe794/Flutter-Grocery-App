@@ -5,37 +5,37 @@ class IconCarousel extends StatelessWidget {
     {
       'path': 'lib/assets/icons-carousel/apple.png',
       'color': Color(0xFFFFE9E5),
-      'route': '/applePage',
+      'route': '/FruitsPage',
     },
     {
       'path': 'lib/assets/icons-carousel/baby.png',
       'color': Color(0xFFD2EFFF),
-      'route': '/babyPage',
+      'route': '/BabycarePage',
     },
     {
       'path': 'lib/assets/icons-carousel/food.png',
       'color': Color(0xFFD4C9EF),
-      'route': '/foodPage',
+      'route': '/GroceryPage',
     },
     {
       'path': 'lib/assets/icons-carousel/olive-oil.png',
       'color': Color(0xFFDCF4F5),
-      'route': '/oliveOilPage',
+      'route': '/EdibleOilPage',
     },
     {
       'path': 'lib/assets/icons-carousel/salad.png',
       'color': Color(0xFFE6F2EA),
-      'route': '/saladPage',
+      'route': '/VegetablesPage',
     },
     {
       'path': 'lib/assets/icons-carousel/soda (1).png',
       'color': Color(0xFFFFF6E3),
-      'route': '/sodaPage',
+      'route': '/BeveragesPage',
     },
     {
       'path': 'lib/assets/icons-carousel/vacuum.png',
       'color': Color(0xFFFFE8F2),
-      'route': '/vacuumPage',
+      'route': '/HouseholdPage',
     },
   ];
 

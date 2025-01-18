@@ -19,9 +19,6 @@ class CartItem extends StatelessWidget {
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         onRemove();
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('${item['name']} removed'))
-        );
       },
       background: Container(
         color: Colors.red,
@@ -54,14 +51,14 @@ class CartItem extends StatelessWidget {
                     icon: const Icon(Icons.remove),
                     onPressed: () {
                       if (item['quantity'] > 0) {
-                        onAdd(-1); // Decrease quantity
+                        onAdd(-1);
                       }
                     },
                   ),
                   Text('${item['quantity']}'),
                   IconButton(
                     icon: const Icon(Icons.add),
-                    onPressed: () => onAdd(1), // Increase quantity
+                    onPressed: () => onAdd(1),
                   ),
                 ],
               ),

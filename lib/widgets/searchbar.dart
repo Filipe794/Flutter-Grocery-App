@@ -13,8 +13,8 @@ class Search extends StatelessWidget {
           hintText: 'Digite o nome do produto',
           prefixIcon: Icon(Icons.search),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0), // Arredondando as bordas
-            borderSide: BorderSide.none, // Remove a borda padrão
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: BorderSide.none,
           ),
           filled: true,
           fillColor: const Color.fromARGB(255, 201, 197, 197).withOpacity(0.1)

@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Color(0xFFAEDC81), Color(0xFF6CC51D)], // Gradiente de verde claro para verde mais escuro
+            colors: [Color(0xFFAEDC81), Color(0xFF6CC51D)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -22,8 +22,8 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.transparent, // Fundo transparente
-            shadowColor: Colors.transparent, // Remove a sombra
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

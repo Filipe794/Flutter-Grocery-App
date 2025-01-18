@@ -60,7 +60,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text('Grocery App'),
         centerTitle: true,
       ),
@@ -71,38 +72,29 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Barra de busca
                 Search(),
                 SizedBox(height: 10),
-
-                // Carrossel de imagens
                 SizedBox(
                   height: 200,
                   child: Carousel(),
                 ),
                 SizedBox(height: 10),
-
-                // Linha clicável de categorias
                 ClickableRow(
                   text: "Categories",
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ShowCategoriesPage()),
+                      MaterialPageRoute(
+                          builder: (context) => ShowCategoriesPage()),
                     );
                   },
                 ),
                 SizedBox(height: 10),
-
-                // Ícones de categorias
                 SizedBox(
                   height: 75,
                   child: IconCarousel(),
                 ),
-
                 SizedBox(height: 10),
-
-                // Produtos em duas colunas
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -114,7 +106,12 @@ class HomePage extends StatelessWidget {
                   itemCount: iconData.length,
                   itemBuilder: (context, index) {
                     final item = iconData[index];
-                    return ProductCard(productQuantity: item['quantity'], productPrice: item['price'],path: item['path'], color: item['color'], name: item['name']);
+                    return ProductCard(
+                        productQuantity: item['quantity'],
+                        productPrice: item['price'],
+                        path: item['path'],
+                        color: item['color'],
+                        name: item['name']);
                   },
                 ),
               ],
@@ -123,18 +120,21 @@ class HomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: CustomBottomAppBar(
-        onHomePressed: () {
-        },
+        onHomePressed: () {},
         onAccountPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Profile() ));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Profile()));
         },
         onFavoritePressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ShowFavorites()));
         },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCartPage() ));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ShoppingCartPage()));
         },
         child: const Icon(
           Icons.shopping_bag_outlined,

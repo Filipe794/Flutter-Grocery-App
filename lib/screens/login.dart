@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:groceryapp/services/authservice.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  AuthService _authService = AuthService();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +34,7 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       labelText: 'E-mail',
                       prefixIcon: Icon(Icons.email),
@@ -41,6 +48,7 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: TextField(
+                    controller: _senhaController,
                     decoration: InputDecoration(
                       labelText: 'Senha',
                       prefixIcon: Icon(Icons.lock),
@@ -53,7 +61,19 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: CustomButton(onPressed: (){}, buttonText: "Entrar"),
+                  child: CustomButton(onPressed: (){
+                    _authService.loginUser(email: _emailController.text, password: _senhaController.text).then((String? erro){
+                      if(erro != null){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(erro),
+                          ),
+                        );
+                      }else{
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      }
+                    });
+                  }, buttonText: "Entrar"),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),

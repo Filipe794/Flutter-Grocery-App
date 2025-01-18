@@ -121,7 +121,6 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         ),
         bottomNavigationBar: BottomAppBar(
           color: Colors.white,
-          elevation: 0,
           child: CustomButton(
             onPressed: () {
               Navigator.pushReplacement(context,

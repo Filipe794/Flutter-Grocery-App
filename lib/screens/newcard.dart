@@ -27,7 +27,10 @@ class _NewCardScreenState extends State<NewCardScreen> {
     setState(() {
       _cardNumber = value.isEmpty
           ? "XXXX  XXXX  XXXX  XXXX"
-          : value.replaceAllMapped(RegExp(r".{1,4}"), (match) => "${match.group(0)} ").trim();
+          : value
+              .replaceAllMapped(
+                  RegExp(r".{1,4}"), (match) => "${match.group(0)} ")
+              .trim();
     });
   }
 
@@ -123,7 +126,8 @@ class _NewCardScreenState extends State<NewCardScreen> {
                 onChanged: _updateCardHolderName,
               ),
               SizedBox(height: 16),
-              TextField(maxLength: 16,
+              TextField(
+                maxLength: 16,
                 controller: _cardNumberController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -144,21 +148,27 @@ class _NewCardScreenState extends State<NewCardScreen> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText: "Month / Year",
-                        prefixIcon: Icon(Icons.calendar_today, color: Colors.green),
+                        prefixIcon:
+                            Icon(Icons.calendar_today, color: Colors.green),
                         border: OutlineInputBorder(),
                         counterText: "",
                       ),
                       onChanged: (value) {
-                        if (value.length == 2 && !_expiryDateController.text.contains('/')) {
+                        if (value.length == 2 &&
+                            !_expiryDateController.text.contains('/')) {
                           _expiryDateController.text = '$value/';
-                          _expiryDateController.selection = TextSelection.fromPosition(
-                            TextPosition(offset: _expiryDateController.text.length),
+                          _expiryDateController.selection =
+                              TextSelection.fromPosition(
+                            TextPosition(
+                                offset: _expiryDateController.text.length),
                           );
                         }
                         if (value.length > 5) {
                           _expiryDateController.text = value.substring(0, 5);
-                          _expiryDateController.selection = TextSelection.fromPosition(
-                            TextPosition(offset: _expiryDateController.text.length),
+                          _expiryDateController.selection =
+                              TextSelection.fromPosition(
+                            TextPosition(
+                                offset: _expiryDateController.text.length),
                           );
                         }
                         _updateExpiryDate(_expiryDateController.text);
@@ -207,7 +217,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
-        child: CustomButton(onPressed: (){}, buttonText: "Add card"),
+        child: CustomButton(onPressed: () {}, buttonText: "Add card"),
       ),
     );
   }

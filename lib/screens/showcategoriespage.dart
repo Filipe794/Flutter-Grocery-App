@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:groceryapp/screens/exportscreens.dart';
 
 class ShowCategoriesPage extends StatelessWidget {
   final List<Map<String, dynamic>> iconData = [
@@ -47,6 +48,7 @@ class ShowCategoriesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.lightGreen[100],
         title: Text('Categories'),
+        centerTitle: true,
         leading: BackButton(),
       ),
       body: SafeArea(
@@ -72,11 +74,14 @@ class ShowCategoriesPage extends StatelessWidget {
                       color: item['color'],
                       name: item['name'],
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Você clicou em ${item['name']}!'),
-                          ),
-                        );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoryPage(
+                                categoryName: item['name'],
+                              ),
+                            ),
+                          );
                       },
                     );
                   },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ClickableRow extends StatelessWidget {
   final String text;
-  final VoidCallback onTap; // Função a ser chamada ao clicar
+  final VoidCallback onTap;
 
   const ClickableRow({super.key, required this.text, required this.onTap});
 
@@ -22,7 +22,7 @@ class ClickableRow extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             Icon(
-              Icons.arrow_forward_ios, // Símbolo de seta
+              Icons.arrow_forward_ios,
               size: 18,
               color: Colors.grey,
             ),

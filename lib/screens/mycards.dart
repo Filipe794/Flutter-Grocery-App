@@ -141,8 +141,11 @@ class _ExpandableCardState extends State<ExpandableCard> {
               },
             ),
           ),
-          if (isExpanded)
-            Padding(
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: isExpanded
+                ? Padding(
+              key: ValueKey<bool>(isExpanded),
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,7 +212,9 @@ class _ExpandableCardState extends State<ExpandableCard> {
                   ),
                 ],
               ),
-            ),
+            )
+                : SizedBox.shrink(),
+          ),
         ],
       ),
     );
