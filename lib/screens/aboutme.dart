@@ -7,14 +7,13 @@ class AboutMeScreen extends StatefulWidget {
 }
 
 class _AboutMeScreenState extends State<AboutMeScreen> {
-  // Dados do usuário em um dicionário
+
   final Map<String, String> userData = {
     "name": "Russell Austin",
     "email": "russell.partner@gmail.com",
     "phone": "+1 202 555 0142",
   };
 
-  // Controladores para campos de senha
   final TextEditingController _currentPasswordController =
       TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
@@ -121,7 +120,6 @@ class _AboutMeScreenState extends State<AboutMeScreen> {
     );
   }
 
-  // Função para construir os campos de detalhes pessoais
   Widget _buildDetailTile(IconData icon, String detail) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -143,11 +141,4 @@ class _AboutMeScreenState extends State<AboutMeScreen> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: AboutMeScreen(),
-  ));
 }

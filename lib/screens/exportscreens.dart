@@ -10,3 +10,7 @@ export 'package:groceryapp/screens/showcategoriespage.dart';
 export 'package:groceryapp/screens/aboutme.dart';
 export 'package:groceryapp/screens/newcard.dart';
 export 'package:groceryapp/screens/mycards.dart';
+export 'package:groceryapp/screens/authpage.dart';
+export 'package:groceryapp/screens/login.dart';
+export 'package:groceryapp/screens/signup.dart';
+export 'package:groceryapp/screens/myorders.dart';

@@ -58,7 +58,9 @@ class Profile extends StatelessWidget {
                       _buildMenuItem(
                         icon: Icons.inventory,
                         text: "My Orders",
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MyOrderScreen()));
+                        },
                       ),
                       _buildMenuItem(
                         icon: Icons.favorite_border_outlined,
