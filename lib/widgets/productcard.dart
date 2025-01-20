@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
-import 'package:add_to_cart_button/add_to_cart_button.dart';
 
 class ProductCard extends StatelessWidget {
-  final String path;
-  final Color color;
-  final String productPrice;
-  final String productQuantity;
-  final String name;
+  final Map<String, dynamic> productData;
 
   const ProductCard({
     super.key,
-    required this.path,
-    required this.color,
-    required this.name,
-    required this.productPrice,
-    required this.productQuantity,
+    required this.productData,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductPage()));},
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductPage(
+              productData: productData,
+            ),
+          ),
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -39,34 +40,33 @@ class ProductCard extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               Padding(
                 padding: const EdgeInsets.only(top: 3.0, right: 3.0),
-                child: FavoriteButton(size:19,onTap: () {}),
+                child: FavoriteButton(size: 19),
               ),
             ]),
             Container(
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: color,
+                color: Colors.white,
                 shape: BoxShape.circle,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
-                child: Image.asset(
-                  path,
-                  fit: BoxFit.contain,
+                child: GoogleDriveImage(
+                  googleDriveUrl: productData['imageurl'],
                 ),
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              productPrice,
+              "\$${productData['price'].toString()}0",
               style: TextStyle(
-                fontSize: 13.0,
+                fontSize: 14.0,
                 color: Colors.green,
               ),
             ),
             Text(
-              name,
+              productData['name'],
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 15,
@@ -76,47 +76,13 @@ class ProductCard extends StatelessWidget {
             ),
             SizedBox(height: 5.0),
             Text(
-              productQuantity,
+              productData['quantity'],
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.grey,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0.5,
-                        padding: EdgeInsets.zero,
-                      ),
-                      onPressed: () {},
-                      child: Icon(Icons.shopping_bag_outlined),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 8.0, top: 5.0),
-                  child: Column(
-                    children: [
-                      AddToCartCounterButton(
-                        initNumber: 0,
-                        minNumber: 0,
-                        maxNumber: 10,
-                        increaseCallback: () {},
-                        decreaseCallback: () {},
-                        counterCallback: (int count) {},
-                        backgroundColor: Colors.green.shade300,
-                        buttonFillColor: Colors.green.shade300,
-                        buttonIconColor: Colors.white,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )
+            ShopBagButton(),
           ],
         ),
       ),

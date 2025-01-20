@@ -3,19 +3,11 @@ import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class FavoriteCard extends StatelessWidget {
-  final String path;
-  final Color color;
-  final String productPrice;
-  final String name;
-  final String category;
+  final Map<String, dynamic> productData;
 
   const FavoriteCard({
     super.key,
-    required this.path,
-    required this.color,
-    required this.name,
-    required this.productPrice,
-    required this.category,
+    required this.productData,
   });
 
   @override
@@ -24,7 +16,10 @@ class FavoriteCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProductPage()),
+          MaterialPageRoute(
+              builder: (context) => ProductPage(
+                    productData: productData,
+                  )),
         );
       },
       child: Container(
@@ -46,7 +41,7 @@ class FavoriteCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(3.0),
-                  child: FavoriteButton(size: 19 ,onTap: () {}, isFavorited: true),
+                  child: FavoriteButton(size: 19, isFavorited: true),
                 ),
               ],
             ),
@@ -54,27 +49,26 @@ class FavoriteCard extends StatelessWidget {
               width: 55,
               height: 55,
               decoration: BoxDecoration(
-                color: color,
+                color: Colors.white,
                 shape: BoxShape.circle,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
-                child: Image.asset(
-                  path,
-                  fit: BoxFit.contain,
+                child: GoogleDriveImage(
+                  googleDriveUrl: productData['imageurl'],
                 ),
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              productPrice,
+              "\$${productData['price'].toString()}0",
               style: const TextStyle(
                 fontSize: 13.0,
                 color: Colors.green,
               ),
             ),
             Text(
-              name,
+              productData['name'],
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 16,
@@ -84,7 +78,7 @@ class FavoriteCard extends StatelessWidget {
             ),
             const SizedBox(height: 5.0),
             Text(
-              category,
+              productData['category'],
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.grey[600],

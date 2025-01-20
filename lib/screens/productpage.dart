@@ -2,17 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class ProductPage extends StatelessWidget {
-  ProductPage({super.key});
+  var productData;
 
-  Map<String, dynamic> productData = {
-    'image_path': 'lib/assets/peach.png',
-    'name': 'Fresh Peach',
-    'price': '\$8.00',
-    'quantity': 'dozen',
-    'rate': '4.0 (89 Reviews)',
-    'description': 'Descubra o sabor autêntico das peras orgânicas, cultivadas com cuidado e respeito à natureza. Reconhecidas por sua doçura e suculência, essas peras são ideais para lanches, sobremesas ou para trazer um toque especial às suas saladas. Uma escolha saudável e deliciosa para quem valoriza qualidade e sustentabilidade.',
-  };
-
+  ProductPage({super.key, required this.productData});
+  
   List<Widget> buildStars(double rating) {
     List<Widget> stars = [];
     for (int i = 1; i <= 5; i++) {
@@ -27,7 +20,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double rating = double.parse(productData['rate'].split(' ')[0]);
+    double rating = double.parse(productData['rating'].split(' ')[0]);
 
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.lightGreen[100],
@@ -49,7 +42,7 @@ class ProductPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(productData['image_path']),
+                          GoogleDriveImage(googleDriveUrl: productData['imageurl']),
                         ],
                       ),
                       Row(
@@ -58,7 +51,7 @@ class ProductPage extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                productData['price'],
+                                '\$${productData['price']}0',
                                 style: TextStyle(
                                   color: Colors.green[400],
                                   fontSize: 16,
@@ -93,7 +86,7 @@ class ProductPage extends StatelessWidget {
                         children: [
                           ...buildStars(rating),
                           const SizedBox(width: 5),
-                          Text(productData['rate']),
+                          Text(productData['rating']),
                         ],
                       ),
                       Row(

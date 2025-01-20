@@ -1,61 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
-  final List<Map<String, dynamic>> iconData = [
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFFFE9E5),
-      'name': 'Pineaple',
-      'price': '\$8.00',
-      'quantity': 'dozen',
-    },
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFD2EFFF),
-      'name': 'Apple',
-      'price': '\$8.00',
-      'quantity': 'dozen'
-    },
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFD4C9EF),
-      'name': 'Peach',
-      'price': '\$8.00',
-      'quantity': 'dozen'
-    },
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFDCF4F5),
-      'name': 'Avocado',
-      'price': '\$8.00',
-      'quantity': 'dozen'
-    },
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFE6F2EA),
-      'name': 'Dragon Fruit',
-      'price': '\$8.00',
-      'quantity': 'dozen'
-    },
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFFFF6E3),
-      'name': 'Pomegranate',
-      'price': '\$8.00',
-      'quantity': 'dozen'
-    },
-    {
-      'path': 'lib/assets/peach.png',
-      'color': Color(0xFFFFE8F2),
-      'name': 'Orange',
-      'price': '\$8.00',
-      'quantity': 'dozen'
-    },
-  ];
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Map<String, dynamic>> productsData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProducts();
+  }
+
+  Future<void> fetchProducts() async {
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      QuerySnapshot querySnapshot =
+          await firestore.collection('products').limit(15).get();
+
+      List<Map<String, dynamic>> products = querySnapshot.docs.map((doc) {
+        return doc.data() as Map<String, dynamic>;
+      }).toList();
+
+      print('Produtos recuperados do Firestore:');
+      for (var product in products) {
+        print(product);
+      }
+
+      products.shuffle();
+
+      setState(() {
+        productsData = products.take(6).toList();
+      });
+    } catch (e) {
+      print('Erro ao recuperar produtos: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,15 +90,12 @@ class HomePage extends StatelessWidget {
                     crossAxisSpacing: 7,
                     mainAxisSpacing: 7,
                   ),
-                  itemCount: iconData.length,
+                  itemCount: productsData.length,
                   itemBuilder: (context, index) {
-                    final item = iconData[index];
+                    final item = productsData[index];
                     return ProductCard(
-                        productQuantity: item['quantity'],
-                        productPrice: item['price'],
-                        path: item['path'],
-                        color: item['color'],
-                        name: item['name']);
+                      productData: item,
+                    );
                   },
                 ),
               ],

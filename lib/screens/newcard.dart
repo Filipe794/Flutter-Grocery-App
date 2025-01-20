@@ -198,7 +198,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Text("Save this card"),
+                    child: Text("Make Default"),
                   ),
                   Switch(
                     activeColor: Colors.green,

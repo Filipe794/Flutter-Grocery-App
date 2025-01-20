@@ -6,6 +6,8 @@ class ShoppingCartPage extends StatefulWidget {
   _ShoppingCartPageState createState() => _ShoppingCartPageState();
 }
 
+// todo ->  tornar carrinho funcional
+
 class _ShoppingCartPageState extends State<ShoppingCartPage> {
   List<Map<String, dynamic>> cartItems = [
     {

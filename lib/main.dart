@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Grocery App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 65, 58, 75),
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               categoryName: 'Grocery',
             ),
         '/EdibleOilPage': (context) => CategoryPage(
-              categoryName: 'Edible Oil',
+              categoryName: 'Oils',
             ),
         '/VegetablesPage': (context) => CategoryPage(
               categoryName: 'Vegetables',
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
               categoryName: 'Beverages',
             ),
         '/HouseholdPage': (context) => CategoryPage(
-              categoryName: 'Household',
+              categoryName: 'Cleaning',
             ),
       },
     );

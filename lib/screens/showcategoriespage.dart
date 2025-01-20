@@ -22,7 +22,7 @@ class ShowCategoriesPage extends StatelessWidget {
     {
       'path': 'lib/assets/icons-carousel/olive-oil.png',
       'color': Color(0xFFDCF4F5),
-      'name': 'Edible Oil'
+      'name': 'Oils'
     },
     {
       'path': 'lib/assets/icons-carousel/salad.png',
@@ -37,7 +37,7 @@ class ShowCategoriesPage extends StatelessWidget {
     {
       'path': 'lib/assets/icons-carousel/vacuum.png',
       'color': Color(0xFFFFE8F2),
-      'name': 'Household'
+      'name': 'Cleaning'
     },
   ];
 

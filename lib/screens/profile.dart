@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/services/authservice.dart';
 
 class Profile extends StatelessWidget {
   Profile({super.key});
-  AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
+
+  // todo -> recuperar informações do usuário (foto, nome, email, telefone, pedidos, endereços, cartoes, favoritos)
+  // recuperar apenas ao clicar na página espefica de cada
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +27,9 @@ class Profile extends StatelessWidget {
                 Column(
                   children: [
                     CircleAvatar(
+                      backgroundColor: Colors.white,
                       radius: 50,
-                      backgroundImage: AssetImage('lib/assets/peach.png'),
+                      child: Image.asset('lib/assets/googlelogo.png'),
                     ),
                     const SizedBox(height: 10),
                     const Text(
