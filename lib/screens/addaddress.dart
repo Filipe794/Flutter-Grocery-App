@@ -3,11 +3,13 @@ import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
 
 class AddAddressScreen extends StatefulWidget {
+  const AddAddressScreen({super.key});
+
   @override
-  _AddAddressScreenState createState() => _AddAddressScreenState();
+  AddAddressScreenState createState() => AddAddressScreenState();
 }
 
-class _AddAddressScreenState extends State<AddAddressScreen> {
+class AddAddressScreenState extends State<AddAddressScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
