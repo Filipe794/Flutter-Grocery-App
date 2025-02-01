@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/services/authservice.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -110,15 +113,19 @@ class _SignupPageState extends State<SignupPage> {
               );
               return;
             }
-            if (_emailController.text.isEmpty || !_emailController.text.contains('@')) {
+            if (_emailController.text.isEmpty ||
+                !_emailController.text.contains('@')) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Por favor, insira um e-mail válido.')),
               );
               return;
             }
-            if (_senhaController.text.isEmpty || _senhaController.text.length < 6) {
+            if (_senhaController.text.isEmpty ||
+                _senhaController.text.length < 6) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('A senha precisa ter pelo menos 6 caracteres.')),
+                SnackBar(
+                    content:
+                        Text('A senha precisa ter pelo menos 6 caracteres.')),
               );
               return;
             }
@@ -128,10 +135,11 @@ class _SignupPageState extends State<SignupPage> {
             });
 
             String? erro = await _authService.authUser(
-              email: _emailController.text,
-              password: _senhaController.text,
-              name: _nomeController.text,
-            );
+                email: _emailController.text,
+                password: _senhaController.text,
+                name: _nomeController.text,
+                phone: _phoneController.text,
+                context: context);
 
             setState(() {
               _isLoading = false;
@@ -142,10 +150,19 @@ class _SignupPageState extends State<SignupPage> {
                 SnackBar(content: Text(erro)),
               );
             } else {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
+              User? user = FirebaseAuth.instance.currentUser;
+              if (user != null) {
+                Provider.of<AppState>(context, listen: false).setUser(user);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                  (Route<dynamic> route) => false,
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Erro ao obter usuário.')),
+                );
+              }
             }
           },
           buttonText: _isLoading ? 'Cadastrando...' : "Cadastrar",

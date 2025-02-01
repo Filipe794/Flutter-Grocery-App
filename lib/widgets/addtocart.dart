@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 
 class QuantityAndCartWidget extends StatefulWidget {
-  const QuantityAndCartWidget({Key? key}) : super(key: key);
+  dynamic productData;
+
+  QuantityAndCartWidget({super.key, required this.productData});
 
   @override
   State<QuantityAndCartWidget> createState() => _QuantityAndCartWidgetState();
@@ -55,7 +59,10 @@ class _QuantityAndCartWidgetState extends State<QuantityAndCartWidget> {
                 )
               ],
             ),
-            CustomButton(onPressed: (){}, buttonText: "Add to Cart"),
+            CustomButton(onPressed: (){
+              widget.productData['qnt_cart'] = quantity;
+              jsonEncode(widget.productData);
+            }, buttonText: "Add to Cart"),
           ],
         ),
       ),

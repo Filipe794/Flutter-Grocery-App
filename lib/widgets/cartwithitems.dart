@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
-
+import 'package:groceryapp/entity/app_state.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CartWithItems extends StatelessWidget {
-  final double subtotal;
-  final double shippingCharges;
-  final double total;
-  final List<Map<String, dynamic>> cartItems;
-  final Function(int) onRemove;
-  final Function(int, int) onUpdateQuantity;
-
-  CartWithItems(
-      this.subtotal, this.shippingCharges, this.total, this.cartItems, this.onRemove, this.onUpdateQuantity);
+  const CartWithItems();
 
   @override
   Widget build(BuildContext context) {
+    double shippingCharges = 1.6;
+    double totalPrice = 0;
+
+    String calculateTotal() {
+      for (var product in context.read<AppState>().basket) {
+        totalPrice += product['price'];
+      }
+      totalPrice += shippingCharges;
+      return NumberFormat.simpleCurrency().format(totalPrice);
+    }
+
     return Column(
       children: [
         Expanded(
           child: ListView.builder(
-            itemCount: cartItems.length,
-            itemBuilder: (context, index) {
-              final item = cartItems[index];
-              return Dismissible(
-                key: Key(item['name']),
-                onDismissed: (direction) {
-                  onRemove(index);
-                },
-                background: Container(color: Colors.red),
-                child: CartItem(
-                  item: item,
-                  onRemove: () => onRemove(index),
-                  onAdd: (int quantityChange) => onUpdateQuantity(index, quantityChange),
-                ),
+            itemCount: context.read<AppState>().basket.length,
+            itemBuilder: (BuildContext context, index) {
+              final item = context.read<AppState>().basket[index];
+              return CartItem(
+                item: item,
+                index: index,
               );
             },
           ),
@@ -42,18 +39,30 @@ class CartWithItems extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              PriceRow(label: 'Subtotal', value: subtotal),
-              const SizedBox(height: 8),
-              PriceRow(label: 'Shipping charges', value: shippingCharges),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Shipping Charges', style: const TextStyle(fontSize: 16)),
+                  Text('\$${shippingCharges.toStringAsFixed(2)}', style: const TextStyle(fontSize: 16)),
+                ],
+              ),
               const Divider(),
-              PriceRow(label: 'Total', value: total),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Total', style: const TextStyle(fontSize: 16)),
+                  Text(calculateTotal(), style: const TextStyle(fontSize: 16)),
+                ],
+              ),
               const SizedBox(height: 16),
               CustomButton(
                 onPressed: () {
+                  context.read<AppState>().basket.clear();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => OrderSuccessScreen()),
+                      builder: (context) => OrderSuccessScreen(),
+                    ),
                   );
                 },
                 buttonText: "Checkout",

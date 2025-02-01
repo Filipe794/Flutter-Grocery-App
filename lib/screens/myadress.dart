@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
+
 
 class MyAddressScreen extends StatelessWidget {
-  final List<Map<String, dynamic>> addresses = [
-    {
-      "name": "Russell Austin",
-      "address": "2811 Crescent Day, LA Port",
-      "city": "California",
-      "country": "United States",
-      "phone": "+1 202 555 0142",
-      "isDefault": true,
-    },
-    {
-      "name": "Jissca Simpson",
-      "address": "2811 Crescent Day, LA Port",
-      "city": "California",
-      "country": "United States",
-      "phone": "+1 202 555 0142",
-      "isDefault": false,
-    },
-  ];
-
   MyAddressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userAddress = context.watch<AppState>().userData['addresses'];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen[100],
@@ -43,9 +29,9 @@ class MyAddressScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: addresses.length,
+        itemCount: userAddress.length,
         itemBuilder: (context, index) {
-          final address = addresses[index];
+          final address = userAddress[index];
           return ExpandableAddressCard(
             name: address["name"],
             address: address["address"],

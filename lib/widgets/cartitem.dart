@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp/entity/app_state.dart';
+import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
   final Map<String, dynamic> item;
-  final Function onRemove;
-  final Function onAdd;
+  final int index;
 
   const CartItem({
     required this.item,
-    required this.onRemove,
-    required this.onAdd,
+    required this.index,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(item['name']),
+      key: UniqueKey(),
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
-        onRemove();
+        context.read<AppState>().removeProduct(index);
       },
       background: Container(
         color: Colors.red,
@@ -32,36 +33,14 @@ class CartItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Card(
           child: ListTile(
-            leading: Image.asset(item['image'], width: 50, height: 50),
-            title: Text(item['name'], style: const TextStyle(fontWeight: FontWeight.bold)),
+            leading: GoogleDriveImage(googleDriveUrl: item['imageurl']),
+            title: Text(item['name'],
+                style: const TextStyle(fontWeight: FontWeight.bold)),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('\$${item['price']} x ${item['quantity']}'),
-                Text(item['weight']),
+                Text('\$${item['price']}'),
               ],
-            ),
-            trailing: SizedBox(
-              width: 120,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.remove),
-                    onPressed: () {
-                      if (item['quantity'] > 0) {
-                        onAdd(-1);
-                      }
-                    },
-                  ),
-                  Text('${item['quantity']}'),
-                  IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: () => onAdd(1),
-                  ),
-                ],
-              ),
             ),
           ),
         ),

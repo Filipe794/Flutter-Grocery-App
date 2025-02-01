@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:add_to_cart_button/add_to_cart_button.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
 
 class ShopBagButton extends StatelessWidget {
   double counter = 0;

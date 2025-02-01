@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
-import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/services/authservice.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
 
 class Profile extends StatelessWidget {
   Profile({super.key});
   final AuthService _authService = AuthService();
 
-  // todo -> recuperar informações do usuário (foto, nome, email, telefone, pedidos, endereços, cartoes, favoritos)
-  // recuperar apenas ao clicar na página espefica de cada
-
   @override
   Widget build(BuildContext context) {
+
+    final userData = context.watch<AppState>().userData;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile"),
@@ -32,16 +33,16 @@ class Profile extends StatelessWidget {
                       child: Image.asset('lib/assets/googlelogo.png'),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      "Olivia Austin",
+                    Text(
+                      userData['name'] ?? "Nome não disponível",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 5),
-                    const Text(
-                      "olivia@gmail.com",
+                    Text(
+                      userData['email'] ?? "E-mail não disponível",
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -103,7 +104,7 @@ class Profile extends StatelessWidget {
                       icon: Icons.logout,
                       text: "Sign out",
                       onTap: () {
-                        _authService.logout();
+                        _authService.logout(context);
                       },
                     ),
                   ],

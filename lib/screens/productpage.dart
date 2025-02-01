@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
 
-class ProductPage extends StatelessWidget {
-  var productData;
+class ProductPage extends StatefulWidget {
+  dynamic productData;
 
   ProductPage({super.key, required this.productData});
-  
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  int counter = 1;
+
   List<Widget> buildStars(double rating) {
     List<Widget> stars = [];
     for (int i = 1; i <= 5; i++) {
@@ -18,13 +27,33 @@ class ProductPage extends StatelessWidget {
     return stars;
   }
 
+  void incrementQuantity() {
+    setState(() {
+      counter++;
+    });
+  }
+
+  void decrementQuantity() {
+    if (counter > 1) {
+      setState(() {
+        counter--;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    double rating = double.parse(productData['rating'].split(' ')[0]);
+    double rating = double.parse(widget.productData['rating'].split(' ')[0]);
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.lightGreen[100],
-        title: Text(productData['name']),
+      appBar: AppBar(
+        backgroundColor: Colors.lightGreen[100],
+        title: Text(widget.productData['name']),
         leading: BackButton(),
         centerTitle: true,
       ),
@@ -42,7 +71,8 @@ class ProductPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GoogleDriveImage(googleDriveUrl: productData['imageurl']),
+                          GoogleDriveImage(
+                              googleDriveUrl: widget.productData['imageurl']),
                         ],
                       ),
                       Row(
@@ -51,7 +81,7 @@ class ProductPage extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '\$${productData['price']}0',
+                                '\$${widget.productData['price']}0',
                                 style: TextStyle(
                                   color: Colors.green[400],
                                   fontSize: 16,
@@ -64,7 +94,7 @@ class ProductPage extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            productData['name'],
+                            widget.productData['name'],
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -75,7 +105,7 @@ class ProductPage extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            productData['quantity'],
+                            widget.productData['quantity'],
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -86,7 +116,7 @@ class ProductPage extends StatelessWidget {
                         children: [
                           ...buildStars(rating),
                           const SizedBox(width: 5),
-                          Text(productData['rating']),
+                          Text(widget.productData['rating']),
                         ],
                       ),
                       Row(
@@ -96,7 +126,7 @@ class ProductPage extends StatelessWidget {
                             child: SizedBox(
                               width: 370,
                               child: Text(
-                                productData['description'],
+                                widget.productData['description'],
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 14,
@@ -111,7 +141,47 @@ class ProductPage extends StatelessWidget {
                 ),
               ),
             ),
-            QuantityAndCartWidget(),
+            Transform.scale(
+              scale: 0.90,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: decrementQuantity,
+                          icon: const Icon(Icons.remove),
+                          color: Colors.black,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            '$counter',
+                            style: const TextStyle(fontSize: 18.0),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: incrementQuantity,
+                          icon: const Icon(Icons.add),
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                    CustomButton(
+                        onPressed: () {
+                          for (var i = 0; i < counter; i++) {
+                            context
+                                .read<AppState>()
+                                .addProduct(widget.productData);
+                          }
+                        },
+                        buttonText: "Add to Cart"),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

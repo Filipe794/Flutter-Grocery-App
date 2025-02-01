@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/services/authservice.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   AuthService _authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,19 +63,33 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: CustomButton(onPressed: (){
-                    _authService.loginUser(email: _emailController.text, password: _senhaController.text).then((String? erro){
-                      if(erro != null){
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(erro),
-                          ),
+                  child: CustomButton(
+                      onPressed: () async {
+                        String? erro = await _authService.loginUser(
+                          email: _emailController.text,
+                          password: _senhaController.text,
+                          context: context,
                         );
-                      }else{
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                      }
-                    });
-                  }, buttonText: "Entrar"),
+                        if (erro != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(erro),
+                            ),
+                          );
+                        } else {
+                          User? user = FirebaseAuth.instance.currentUser;
+                          if (user != null) {
+                            context.read<AppState>().setUser(user);
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                              (Route<dynamic> route) => false,
+                            );
+                          }
+                        }
+                      },
+                      buttonText: "Entrar"),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
@@ -81,9 +97,7 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                         child: Text('Esqueci minha senha'),
                       ),
                     ],

@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 class FavoriteButton extends StatefulWidget {
   final double size;
   final bool isFavorited;
+  final VoidCallback onTap;
 
   const FavoriteButton({
     super.key,
     this.size = 24.0,
+    required this.onTap,
     this.isFavorited = false,
   });
 
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
-
-  void onTap() {
-    // todo -> adicionar a lista de favoritos do usuário
-  }
 }
 
 class _FavoriteButtonState extends State<FavoriteButton>

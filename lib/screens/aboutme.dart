@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
+import 'package:provider/provider.dart';
+import 'package:groceryapp/entity/app_state.dart';
 
 class AboutMeScreen extends StatefulWidget {
   @override
@@ -7,12 +9,6 @@ class AboutMeScreen extends StatefulWidget {
 }
 
 class _AboutMeScreenState extends State<AboutMeScreen> {
-  final Map<String, String> userData = {
-    "name": "Russell Austin",
-    "email": "russell.partner@gmail.com",
-    "phone": "+1 202 555 0142",
-  };
-
   final TextEditingController _currentPasswordController =
       TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
@@ -39,6 +35,8 @@ class _AboutMeScreenState extends State<AboutMeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userData = context.watch<AppState>().userData;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("About me"),

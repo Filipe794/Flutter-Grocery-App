@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp/widgets/exportwidgets.dart';
 import 'package:groceryapp/screens/exportscreens.dart';
 
+
 class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,6 @@ class AuthPage extends StatelessWidget {
                       label: Text('Continue with Google'),
                       onPressed: () {
                         // Ação do botão
-
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,

@@ -44,15 +44,13 @@ class ShowFavorites extends StatelessWidget {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 9,
+                    mainAxisSpacing: 9,
                   ),
                   itemCount: favoriteItems.length,
                   itemBuilder: (context, index) {
                     final item = favoriteItems[index];
-                    return FavoriteCard(
-                      productData: favoriteItems[0],
-                    );
+                    return ProductCard(productData: favoriteItems[index]);
                   },
                 ),
               ),
